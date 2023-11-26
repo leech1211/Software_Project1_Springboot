@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Image View</title>
+</head>
+<body>
+<h1>Image View</h1>
+<!--<p th:text="'Image ID: ' + ${imageId}"></p>-->
+<h3 th:text="${title}"></h3>
+<img th:src="@{'/' + ${imagePath}}" width="200" height="170" alt="Gallery Image">
+
+<p th:text="${comment}"></p>
+
+
+<!-- 수정 버튼 -->
+<form th:action="@{/edit/{imageId}(imageId=${imageId})}" method="GET">
+    <button type="submit">수정</button>
+</form>
+
+<!-- 삭제 버튼 -->
+<form th:action="@{'/delete/' + ${imageId}}" method="POST">
+    <button type="submit">삭제</button>
+</form>
+
+</body>
+</html>

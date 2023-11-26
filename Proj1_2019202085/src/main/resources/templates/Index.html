@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Gallery</title>
+    <style>
+        /* 스타일은 필요에 따라 추가/수정 가능 */
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .image-container > div {
+            width: 200px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1>2019202085</h1>
+
+<!-- 사진 올리기 버튼 -->
+<form action="/upload" method="GET">
+    <button type="submit">사진 올리기</button>
+</form>
+
+<div class="image-container">
+    <!-- 이미지와 타이틀을 반복하여 표시 -->
+    <div th:each="gallery : ${galleryList}">
+        <a th:href="@{/image/{id}(id=${gallery.id})}">
+            <img th:src="@{${gallery.imagePath}}" width="200" height="170" alt="Gallery Image">
+            <h3 th:text="${gallery.title}"></h3>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
